@@ -1,20 +1,21 @@
 ---
 # tasks file for cisco_interface_description
 
-- name: Gather interface facts
+- name: cisco.nxos.nxos | Gather interface facts.
   cisco.nxos.nxos_facts:
     gather_subset:
       - interfaces
   vars:
     ansible_command_timeout: 60
 
-- name: Set interface description
+- name: cisco.nxos.nxos | Set interface description.
   cisco.nxos.nxos_config:
     lines:
-      - description {{ item['value'][0]['host'] }} via {{ item['value'][0]['port'] }}
+      - description {{ cisco_interface_description_item['value'][0]['host'] }} via {{ cisco_interface_description_item['value'][0]['port'] }}
     parents:
-      - interface {{ item.key }}
+      - interface {{ cisco_interface_description_item.key }}
   loop: "{{ ansible_facts.net_neighbors | dict2items }}"
   loop_control:
-    label: "{{ item.key }}"
+    label: "{{ cisco_interface_description_item.key }}"
+    loop_var: cisco_interface_description_item
   notify: Save nxos

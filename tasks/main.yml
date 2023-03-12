@@ -1,6 +1,6 @@
 ---
 # tasks file for cisco_interface_description
 
-- name: Include tasks
+- name: Include OS-specific tasks.
   ansible.builtin.include_tasks:
     file: "{{ ansible_network_os }}.yml"
