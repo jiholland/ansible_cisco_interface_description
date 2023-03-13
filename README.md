@@ -1,5 +1,5 @@
-cisco\_interface\_description
-=============================
+interface\_description
+=======================
 
 Set interface description based on CDP and LLDP.
 
@@ -28,7 +28,7 @@ Example Playbook
       gather_facts: false
 
       roles:
-        - cisco_interface_description
+        - interface_description
 
 License
 -------
